@@ -29,7 +29,8 @@ struct ContentView: View {
                 PhantomConnect.configure(
                     appUrl: "https://example.com",
                     cluster: "devnet",
-                    redirectUrl: "example://"
+                    redirectUrl: "example://",
+                    walletProvider: .phantom
                 )
                 
             }

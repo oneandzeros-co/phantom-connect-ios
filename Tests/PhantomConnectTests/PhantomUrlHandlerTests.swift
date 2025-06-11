@@ -11,10 +11,13 @@ import XCTest
 class PhantomUrlHandlerTests: XCTestCase {
     
     func testCanHandle() throws {
-        
-        let connect = URL(string: "url.scheme://phantom_connect")!
-        let disconnect = URL(string: "url.scheme://phantom_disconnect")!
-        let singAndSendTransaction = URL(string: "url.scheme://phantom_sign_and_send_transaction")!
+
+        PhantomConnect.configure(appUrl: "url", cluster: "cluster", redirectUrl: "redirect")
+
+        let prefix = PhantomConnectService.walletProvider.prefix
+        let connect = URL(string: "url.scheme://\(prefix)_connect")!
+        let disconnect = URL(string: "url.scheme://\(prefix)_disconnect")!
+        let singAndSendTransaction = URL(string: "url.scheme://\(prefix)_sign_and_send_transaction")!
         
         let unknown = URL(string: "url.scheme://unknown")!
         

@@ -22,6 +22,7 @@ public class PhantomConnectService {
     static var appUrl: String?
     static var cluster: String?
     static var redirectUrl: String?
+    static var walletProvider: WalletProvider = .phantom
     
     // MARK: Internal Static Methods
     
@@ -48,10 +49,10 @@ public class PhantomConnectService {
         
         try checkConfiguration()
         
-        guard let url = UrlUtils.format("\(phantomBase)ul/\(version!)/connect", parameters: [
+        guard let url = UrlUtils.format("\(walletBase)ul/\(version!)/connect", parameters: [
             "app_url": PhantomConnectService.appUrl!,
             "dapp_encryption_public_key": Base58.encode(publicKey.bytes),
-            "redirect_link": "\(PhantomConnectService.redirectUrl!)phantom_connect",
+            "redirect_link": "\(PhantomConnectService.redirectUrl!)\(walletPrefix)_connect",
             "cluster": "\(PhantomConnectService.cluster!)"
         ]) else {
             throw PhantomConnectError.invalidUrl
@@ -82,9 +83,9 @@ public class PhantomConnectService {
             throw PhantomConnectError.invalidEncryptionPublicKey
         }
         
-        guard let url = UrlUtils.format("\(phantomBase)ul/\(version!)/disconnect", parameters: [
+        guard let url = UrlUtils.format("\(walletBase)ul/\(version!)/disconnect", parameters: [
             "dapp_encryption_public_key": encryptionPublicKey.base58EncodedString,
-            "redirect_link": "\(PhantomConnectService.redirectUrl!)phantom_disconnect",
+            "redirect_link": "\(PhantomConnectService.redirectUrl!)\(walletPrefix)_disconnect",
             "nonce": nonce,
             "payload": payload
         ]) else {
@@ -116,9 +117,9 @@ public class PhantomConnectService {
             throw PhantomConnectError.invalidEncryptionPublicKey
         }
         
-        guard let url = UrlUtils.format("\(phantomBase)ul/\(version!)/signAndSendTransaction", parameters: [
+        guard let url = UrlUtils.format("\(walletBase)ul/\(version!)/signAndSendTransaction", parameters: [
             "dapp_encryption_public_key": encryptionPublicKey.base58EncodedString,
-            "redirect_link": "\(PhantomConnectService.redirectUrl!)phantom_sign_and_send_transaction",
+            "redirect_link": "\(PhantomConnectService.redirectUrl!)\(walletPrefix)_sign_and_send_transaction",
             "nonce": nonce,
             "payload": payload
         ]) else {
@@ -164,7 +165,13 @@ public class PhantomConnectService {
     
     // MARK: Private Properties
     
-    private let phantomBase = "https://phantom.app/"
+    private var walletBase: String {
+        PhantomConnectService.walletProvider.baseURL
+    }
+
+    private var walletPrefix: String {
+        PhantomConnectService.walletProvider.prefix
+    }
     
     // MARK: Private Methods
     
