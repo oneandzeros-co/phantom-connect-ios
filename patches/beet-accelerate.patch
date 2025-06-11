@@ -1,0 +1,22 @@
+--- a/Sources/Beet/Vendor/Int2x/Int2X.swift	2025-06-11 04:13:05.092965382 +0000
++++ b/Sources/Beet/Vendor/Int2x/Int2X.swift	2025-06-11 04:15:01.613091343 +0000
+@@ -1,5 +1,7 @@
+ import Foundation
+-import Accelerate.vecLib
++#if canImport(Accelerate)
++import Accelerate
++#endif
+ 
+ public typealias Int1X = FixedWidthInteger & BinaryInteger & SignedInteger & Codable
+ 
+--- a/Sources/Beet/Vendor/Int2x/UInt2X.swift	2025-06-11 04:13:05.092965382 +0000
++++ b/Sources/Beet/Vendor/Int2x/UInt2X.swift	2025-06-11 04:15:04.853095969 +0000
+@@ -1,5 +1,7 @@
+ import Foundation
+-import Accelerate.vecLib
++#if canImport(Accelerate)
++import Accelerate
++#endif
+ 
+ public typealias UInt1X = FixedWidthInteger & BinaryInteger & UnsignedInteger & Codable
+ 

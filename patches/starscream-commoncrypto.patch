@@ -1,0 +1,12 @@
+--- a/Sources/Security/FoundationSecurity.swift	2025-06-11 04:13:04.452965034 +0000
++++ b/Sources/Security/FoundationSecurity.swift	2025-06-11 04:18:58.917274520 +0000
+@@ -21,7 +21,9 @@
+ //////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+ import Foundation
++#if canImport(CommonCrypto)
+ import CommonCrypto
++#endif
+ 
+ public enum FoundationSecurityError: Error {
+     case invalidRequest

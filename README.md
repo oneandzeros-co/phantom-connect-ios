@@ -168,7 +168,4 @@ Button {
 ```
 
 
-### Troubleshooting
 
-#### Solana SDK `peer closed` error
-Older revisions of the `Solana.Swift` package sometimes produced a `peer closed` error when the WebSocket connection unexpectedly terminated. Run `swift package update` to ensure all dependencies are on their latest versions. Make sure other libraries like `Starscream` or `Spek` are not overriding the versions used by PhantomConnect.
