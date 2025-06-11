@@ -173,4 +173,4 @@ Button {
 Older revisions of the `Solana.Swift` package sometimes produced a `peer closed` error when the WebSocket connection unexpectedly terminated. Run `swift package update` to ensure all dependencies are on their latest versions. Make sure other libraries like `Starscream` or `Spek` are not overriding the versions used by PhantomConnect.
 
 #### Build errors for `Accelerate.vecLib` or `zlib`
-If the build fails with messages about `Accelerate.vecLib` or `zlib` modules not found, patch the Beet dependency by applying `patches/beet-accelerate.patch` and ensure the system zlib development package is installed (for example `zlib1g-dev` on Debian-based systems).
+If the build fails with messages about `Accelerate.vecLib` or `zlib` modules not found, apply `patches/beet-accelerate.patch`, `patches/starscream-zlib.patch` and `patches/starscream-commoncrypto.patch` to the respective dependencies under `.build/checkouts`. Install the system zlib development package (`zlib1g-dev` on Debian-based systems).
