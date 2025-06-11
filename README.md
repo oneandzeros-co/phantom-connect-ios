@@ -12,6 +12,7 @@ From Xcode 12, you can use [Swift Package Manager](https://swift.org/package-man
 - Add https://github.com/Tokr-Labs/phantom-connect
 - Select "branch" with "main"
 - Select PhantomConnect
+- Run `swift package update` after adding the dependency to ensure the latest compatible versions are used.
 
 If you encounter any problem or have a question on adding the package to an Xcode project, I suggest reading the [Adding Package Dependencies](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) to Your App guide article from Apple.
 
@@ -165,3 +166,11 @@ Button {
 
 ```
 
+
+### Troubleshooting
+
+#### Solana SDK `peer closed` error
+Older revisions of the `Solana.Swift` package sometimes produced a `peer closed` error when the WebSocket connection unexpectedly terminated. Run `swift package update` to ensure all dependencies are on their latest versions. Make sure other libraries like `Starscream` or `Spek` are not overriding the versions used by PhantomConnect.
+
+#### Build errors for `Accelerate.vecLib` or `zlib`
+If the build fails with messages about `Accelerate.vecLib` or `zlib` modules not found, patch the Beet dependency by applying `patches/beet-accelerate.patch` and ensure the system zlib development package is installed (for example `zlib1g-dev` on Debian-based systems).

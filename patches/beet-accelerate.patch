@@ -1,0 +1,14 @@
+--- a/Sources/Beet/Vendor/Int2x/Int2X.swift
++++ b/Sources/Beet/Vendor/Int2x/Int2X.swift
+@@
+-import Accelerate.vecLib
++#if canImport(Accelerate)
++import Accelerate
++#endif
+--- a/Sources/Beet/Vendor/Int2x/UInt2X.swift
++++ b/Sources/Beet/Vendor/Int2x/UInt2X.swift
+@@
+-import Accelerate.vecLib
++#if canImport(Accelerate)
++import Accelerate
++#endif
