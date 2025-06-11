@@ -43,7 +43,8 @@ You'll need to configure the framework to make sure you're pulling in the right 
 PhantomConnect.configure(
     appUrl: <YOUR_APP_URL>, // used for metadata (e.g. image shown in phantom dialog during deeplinking)
     cluster: <SOLANA_CLUSTER>, // `devnet`|`mainnet-beta`
-    redirectUrl: <YOUR_APP_URL_SCHEME> // reverse app domain url ensures uniqueness, but this can be what ever you define
+    redirectUrl: <YOUR_APP_URL_SCHEME>, // reverse app domain url ensures uniqueness, but this can be what ever you define
+    walletProvider: .phantom // `.solflare` and `.metamask` supported
 )
 ```
 

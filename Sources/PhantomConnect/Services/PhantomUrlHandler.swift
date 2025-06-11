@@ -27,13 +27,14 @@ public class PhantomUrlHandler {
             return false
         }
         
+        let prefix = PhantomConnectService.walletProvider.prefix
         let slugs = [
-            "phantom_connect",
-            "phantom_disconnect",
-            "phantom_sign_transaction",
-            "phantom_sign_all_transactions",
-            "phantom_sign_and_send_transaction",
-            "phantom_sign_message"
+            "\(prefix)_connect",
+            "\(prefix)_disconnect",
+            "\(prefix)_sign_transaction",
+            "\(prefix)_sign_all_transactions",
+            "\(prefix)_sign_and_send_transaction",
+            "\(prefix)_sign_message"
         ]
         
         return slugs.contains(where: { $0 == components.host ?? ""})
@@ -70,8 +71,10 @@ public class PhantomUrlHandler {
             
         }
         
+        let prefix = PhantomConnectService.walletProvider.prefix
+
         switch host {
-            case "phantom_connect":
+            case "\(prefix)_connect":
                 
                 guard let phantomEncryptionPublicKey = PublicKey(string: params["phantom_encryption_public_key"] as? String ?? ""),
                       let dappSecretKey = dappSecretKey,
@@ -105,12 +108,12 @@ public class PhantomUrlHandler {
                     error: error
                 )
                 
-            case "phantom_disconnect":
+            case "\(prefix)_disconnect":
                 return .disconnect(
                     error: error
                 )
                 
-            case "phantom_sign_and_send_transaction":
+            case "\(prefix)_sign_and_send_transaction":
                     
                 guard let data = params["data"] as? String,
                       let nonce = params["nonce"] as? String,

@@ -24,11 +24,13 @@ public struct PhantomConnect {
     public static func configure(
         appUrl: String,
         cluster: String,
-        redirectUrl: String
+        redirectUrl: String,
+        walletProvider: WalletProvider = .phantom
     ) {
         PhantomConnectService.appUrl = appUrl
         PhantomConnectService.cluster = cluster
         PhantomConnectService.redirectUrl = redirectUrl
+        PhantomConnectService.walletProvider = walletProvider
     }
     
 }
